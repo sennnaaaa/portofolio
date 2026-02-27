@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achmad Fakhri A. | Graphic Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+        
+        :root {
+            --accent: #A855F7;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
+
+        .hero-bg {
+            background: radial-gradient(at center bottom, #1A0A2E 0%, #0A0A0A 70%);
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 25px -5px rgb(168 85 247),
+                        0 0 10px -5px rgb(168 85 247);
+        }
+
+        .card-3d {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        box-shadow 0.3s ease;
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(8deg) rotateX(8deg) scale(1.03);
+        }
+
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+        }
+
+        .modal {
+            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes modalPop {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .draggable {
+            cursor: grab;
+            user-select: none;
+        }
+        
+        .draggable:active {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+<body class="bg-[#0A0A0A] text-white overflow-x-hidden">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0A0A0A]/80 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-[#A855F7] to-[#6B21A8] rounded-2xl flex items-center justify-center text-xl font-bold">AF</div>
+                <span class="font-semibold tracking-tighter text-2xl">Achmad Fakhri</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#hero" class="hover:text-[#A855F7] transition-colors">Home</a>
+                <a href="#about" class="hover:text-[#A855F7] transition-colors">About</a>
+                <a href="#projects" class="hover:text-[#A855F7] transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-[#A855F7] transition-colors">Contact</a>
+            </div>
+            
+            <button onclick="toggleMobileMenu()" 
+                    class="md:hidden w-10 h-10 flex items-center justify-center text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0A0A0A] border-t border-white/10 py-6">
+            <div class="flex flex-col items-center gap-6 text-lg font-medium">
+                <a href="#hero" onclick="toggleMobileMenu()" class="hover:text-[#A855F7]">Home</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="hover:text-[#A855F7]">About</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="hover:text-[#A855F7]">Projects</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-[#A855F7]">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-bg min-h-screen flex items-center relative pt-20">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <!-- Left Content -->
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-5 py-2 text-sm">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    Available for freelance • 2026
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold heading-font tracking-tighter leading-none">
+                    Halo, saya <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#A855F7] via-[#C026D3] to-[#E879F9]">Achmad Fakhri</span>
+                </h1>
+                
+                <p class="text-2xl md:text-3xl text-gray-400 font-light">
+                    Graphic Designer • 2 Tahun Pengalaman
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" 
+                       class="px-8 py-4 bg-[#A855F7] hover:bg-[#9333EA] transition-all rounded-2xl font-semibold text-lg flex items-center gap-3 group">
+                        Lihat Proyek
+                        <span class="group-active:rotate-45 transition-transform">→</span>
+                    </a>
+                    <a href="#contact" 
+                       class="px-8 py-4 border-2 border-[#A855F7] hover:bg-white/5 transition-all rounded-2xl font-semibold text-lg">
+                        Hubungi Saya
+                    </a>
+                </div>
+                
+                <div class="flex items-center gap-8 text-sm pt-6">
+                    <div>
+                        <span class="block text-[#A855F7] text-3xl font-semibold">10+</span>
+                        <span class="text-gray-400">Proyek Selesai</span>
+                    </div>
+                    <div>
+                        <span class="block text-[#A855F7] text-3xl font-semibold">10+</span>
+                        <span class="text-gray-400">Klien Puas</span>
+                    </div>
+                    <div>
+                        <span class="block text-[#A855F7] text-3xl font-semibold">∞</span>
+                        <span class="text-gray-400">Kreativitas</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Draggable Business Card -->
+            <div class="relative h-[520px] flex items-center justify-center md:justify-end">
+                <div id="business-card"
+                     class="draggable card-3d w-80 bg-[#111111] border border-[#A855F7]/70 rounded-3xl overflow-hidden shadow-2xl neon-glow absolute"
+                     style="transform: rotate(-8deg); top: 80px; right: 40px;">
+                    
+                    <!-- Card Header -->
+                    <div class="h-2 bg-gradient-to-r from-[#6B21A8] to-[#A855F7]"></div>
+                    
+                    <div class="p-6">
+                        <!-- Photo -->
+                        <div class="relative mx-auto w-40 h-52 rounded-2xl overflow-hidden border-4 border-white/20 shadow-inner mb-6">
+                            <img src="https://i.pinimg.com/736x/e1/b9/5a/e1b95aec8b7c68c1330e2d2e7ed5e392.jpg" 
+                                 alt="Achmad Fakhri"
+                                 class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60"></div>
+                        </div>
+                        
+                        <!-- Info -->
+                        <div class="text-center">
+                            <h2 class="text-2xl font-semibold heading-font">Achmad Fakhri</h2>
+                            <p class="text-[#A855F7] text-sm tracking-widest font-medium">GRAPHIC DESIGNER</p>
+                            
+                            <div class="my-6 h-px bg-gradient-to-r from-transparent via-[#A855F7]/30 to-transparent"></div>
+                            
+                            <p class="text-gray-400 text-sm italic leading-relaxed">
+                                "Desain yang tidak hanya dilihat, tapi dirasakan."
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Footer strip -->
+                    <div class="bg-black/60 py-3 px-6 flex items-center justify-between text-[10px] text-gray-400">
+                        <div>leccollectivee.design</div>
+                        <div class="flex gap-3">
+                            <i class="fa-brands fa-instagram"></i>
+                            <i class="fa-brands fa-pinterest"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-xs tracking-widest">
+            <span class="text-gray-500">SCROLL</span>
+            <div class="w-px h-12 bg-gradient-to-b from-transparent via-[#A855F7] to-transparent"></div>
+        </div>
+        
+        <!-- Floating badge -->
+        <div class="absolute top-32 right-12 hidden lg:block bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl px-6 py-3 text-sm flex items-center gap-3">
+            <span class="text-emerald-400">●</span>
+            Open to work
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-16 items-center">
+                <div class="md:col-span-5">
+                    <div class="sticky top-24">
+                        <span class="px-4 py-2 bg-white/5 text-xs tracking-[2px] rounded-full">CHAPTER 01</span>
+                        <h2 class="text-5xl heading-font font-semibold mt-6 leading-none">
+                            Tentang Saya
+                        </h2>
+                    </div>
+                </div>
+                <div class="md:col-span-7 text-lg text-gray-300 leading-relaxed">
+                    <p class="mb-6">
+                        Saya seorang Graphic Designer dengan 2 tahun pengalaman di bidang desain grafis, branding, dan desain digital. 
+                        Spesialisasi saya adalah desain undangan, fashion, dan materi pendidikan.
+                    </p>
+                    <p>
+                        Saya percaya bahwa desain yang baik bukan hanya tentang estetika, tapi tentang bagaimana visual dapat 
+                        menyampaikan cerita, emosi, dan nilai sebuah brand. Setiap pixel yang saya buat bertujuan untuk 
+                        membuat orang berhenti sejenak dan merasa sesuatu.
+                    </p>
+                    
+                    <div class="mt-12 grid grid-cols-3 gap-8">
+                        <div>
+                            <div class="text-[#A855F7] text-4xl font-semibold">2024</div>
+                            <div class="text-sm text-gray-400">Freelance Full-time</div>
+                        </div>
+                        <div>
+                            <div class="text-[#A855F7] text-4xl font-semibold">Figma</div>
+                            <div class="text-sm text-gray-400">Expert</div>
+                        </div>
+                        <div>
+                            <div class="text-[#A855F7] text-4xl font-semibold">Photoshop</div>
+                            <div class="text-sm text-gray-400">Advanced</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <span class="text-xs tracking-[3px] text-[#A855F7]">CHAPTER 02</span>
+                    <h2 class="text-6xl heading-font font-semibold mt-2">Selected Works</h2>
+                </div>
+                <a href="#" onclick="alert('Semua proyek tersedia di portfolio lengkap (coming soon)')"
+                   class="text-sm flex items-center gap-2 hover:text-[#A855F7] transition-colors">
+                    Lihat Semua 
+                    <span class="text-xl">→</span>
+                </a>
+            </div>
+            
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projects populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 border-t border-white/5">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="px-5 py-2 rounded-full bg-white/5 text-sm">CHAPTER 03</span>
+                <h2 class="text-5xl heading-font font-semibold mt-6">Mari Bekerja Sama</h2>
+                <p class="mt-4 text-gray-400 max-w-md mx-auto">
+                    Punya proyek menarik? Saya siap membantu mewujudkan ide Anda menjadi desain yang luar biasa.
+                </p>
+            </div>
+            
+            <!-- Floating WA -->
+            <div class="fixed bottom-8 right-8 z-50">
+                <a href="https://wa.me/6285808514571" target="_blank"
+                   class="flex items-center gap-3 bg-[#25D366] hover:bg-[#22C55E] text-black font-semibold px-7 py-4 rounded-3xl shadow-2xl shadow-green-500/30 transition-all active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    <span>Chat via WhatsApp</span>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-5 gap-12">
+                <!-- Social Links -->
+                <div class="md:col-span-2 space-y-8">
+                    <div class="space-y-6">
+                        <a href="https://instagram.com/leccollectivee" target="_blank" 
+                           class="group flex items-center gap-4 hover:text-[#A855F7] transition-colors">
+                            <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium">@rere</div>
+                                <div class="text-sm text-gray-400">Instagram</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://pin.it/2guOZ4fr9" target="_blank" 
+                           class="group flex items-center gap-4 hover:text-[#A855F7] transition-colors">
+                            <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-pinterest"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium">@zizireyyyyyyyu</div>
+                                <div class="text-sm text-gray-400">Pinterest</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://tiktok.com/@reeyy021" target="_blank" 
+                           class="group flex items-center gap-4 hover:text-[#A855F7] transition-colors">
+                            <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-tiktok"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium">@reyy</div>
+                                <div class="text-sm text-gray-400">TikTok</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="md:col-span-3">
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-2">Nama</label>
+                                <input type="text" id="name" required
+                                       class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:outline-none focus:border-[#A855F7] transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-2">Email</label>
+                                <input type="email" id="email" required
+                                       class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:outline-none focus:border-[#A855F7] transition-colors">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-2">Pesan</label>
+                            <textarea id="message" rows="6" required
+                                      class="w-full bg-white/5 border border-white/10 rounded-3xl px-6 py-5 focus:outline-none focus:border-[#A855F7] transition-colors resize-none"></textarea>
+                        </div>
+                        
+                        <button type="submit"
+                                class="w-full py-6 bg-gradient-to-r from-[#A855F7] to-[#C026D3] rounded-3xl font-semibold text-lg hover:brightness-110 transition-all active:scale-[0.985]">
+                            Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 text-center text-sm text-gray-500">
+            <div class="flex justify-center gap-8 mb-6">
+                <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms</a>
+                <a href="#" class="hover:text-white transition-colors">License</a>
+            </div>
+            <p>&copy; <span id="current-year">2026</span> Achmad Fakhri A. All rights reserved.</p>
+            <p class="mt-2 text-xs"> Peace to heaven and Peace of minds</p>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="hidden fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-6">
+        <div class="modal bg-[#111111] max-w-2xl w-full rounded-3xl overflow-hidden border border-white/10">
+            <!-- Modal Header -->
+            <div class="relative">
+                <img id="modal-image" 
+                     class="w-full h-80 object-cover"
+                     alt="Project">
+                <button onclick="closeModal()" 
+                        class="absolute top-6 right-6 w-10 h-10 bg-black/60 hover:bg-black/80 rounded-full flex items-center justify-center text-xl transition-colors">
+                    ✕
+                </button>
+                <span id="modal-badge" 
+                      class="hidden absolute top-6 left-6 px-5 py-1.5 bg-[#A855F7] text-white text-xs font-semibold rounded-full">
+                    PUBLISHED
+                </span>
+            </div>
+            
+            <div class="p-8">
+                <h3 id="modal-title" class="text-3xl heading-font font-semibold"></h3>
+                <p id="modal-short-desc" class="text-gray-400 mt-2"></p>
+                
+                <div class="my-8 h-px bg-white/10"></div>
+                
+                <div id="modal-full-desc" class="text-gray-300 leading-relaxed text-[15.5px]">
+                </div>
+                
+                <div class="mt-10 flex gap-4">
+                    <button onclick="closeModal()" 
+                            class="flex-1 py-5 border border-white/20 rounded-2xl font-medium hover:bg-white/5 transition-colors">
+                        Tutup
+                    </button>
+                    <a id="modal-whatsapp-btn" href="#" target="_blank"
+                       class="flex-1 py-5 bg-[#A855F7] text-center rounded-2xl font-semibold hover:bg-[#9333EA] transition-colors">
+                        Diskusikan Proyek Ini
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind script already loaded via CDN
+        
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu')
+            menu.classList.toggle('hidden')
+        }
+        
+        // Draggable Business Card
+        function makeDraggable() {
+            const card = document.getElementById('business-card')
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0
+            
+            card.onmousedown = dragMouseDown
+            
+            function dragMouseDown(e) {
+                e.preventDefault()
+                pos3 = e.clientX
+                pos4 = e.clientY
+                document.onmouseup = closeDragElement
+                document.onmousemove = elementDrag
+            }
+            
+            function elementDrag(e) {
+                e.preventDefault()
+                pos1 = pos3 - e.clientX
+                pos2 = pos4 - e.clientY
+                pos3 = e.clientX
+                pos4 = e.clientY
+                
+                let newTop = card.offsetTop - pos2
+                let newLeft = card.offsetLeft - pos1
+                
+                // Constrain inside hero area
+                const hero = document.getElementById('hero')
+                if (newTop < 60) newTop = 60
+                if (newLeft < 20) newLeft = 20
+                if (newTop > hero.offsetHeight - card.offsetHeight - 60) newTop = hero.offsetHeight - card.offsetHeight - 60
+                if (newLeft > hero.offsetWidth - card.offsetWidth - 20) newLeft = hero.offsetWidth - card.offsetWidth - 20
+                
+                card.style.top = newTop + "px"
+                card.style.left = newLeft + "px"
+                card.style.right = "auto"
+            }
+            
+            function closeDragElement() {
+                document.onmouseup = null
+                document.onmousemove = null
+            }
+            
+            // Touch support
+            card.addEventListener('touchstart', (e) => {
+                const touch = e.touches[0]
+                pos3 = touch.clientX
+                pos4 = touch.clientY
+            }, false)
+            
+            card.addEventListener('touchmove', (e) => {
+                e.preventDefault()
+                const touch = e.touches[0]
+                pos1 = pos3 - touch.clientX
+                pos2 = pos4 - touch.clientY
+                pos3 = touch.clientX
+                pos4 = touch.clientY
+                
+                let newTop = card.offsetTop - pos2
+                let newLeft = card.offsetLeft - pos1
+                
+                const hero = document.getElementById('hero')
+                if (newTop < 60) newTop = 60
+                if (newLeft < 20) newLeft = 20
+                if (newTop > hero.offsetHeight - card.offsetHeight - 100) newTop = hero.offsetHeight - card.offsetHeight - 100
+                if (newLeft > hero.offsetWidth - card.offsetWidth - 20) newLeft = hero.offsetWidth - card.offsetWidth - 20
+                
+                card.style.top = newTop + "px"
+                card.style.left = newLeft + "px"
+                card.style.right = "auto"
+            }, false)
+        }
+        
+        // Projects Data
+        const projects = [
+            {
+                id: 1,
+                title: "Wedding Invitation Design",
+                img: "https://i.pinimg.com/736x/d1/a9/de/d1a9de1fbcdf3ee2f05a7758bec39a59.jpg",
+                shortDesc: "Undangan pernikahan mewah dengan tema floral minimalis",
+                fullDesc: "Desain undangan pernikahan digital + cetak untuk pasangan yang menginginkan kesan elegan dan romantis. Menggunakan warna soft pastel dengan detail aksara jawa.",
+                published: true,
+                whatsappLink: "https://wa.me/6285808514571?text=Halo%20Rafi,%20saya%20tertarik%20dengan%20desain%20undangan%20pernikahan%20Anda"
+            },
+            {
+                id: 2,
+                title: "Desain Baju / Clothing Brand",
+                img: "https://i.pinimg.com/1200x/9c/d6/a5/9cd6a5ad8394970f7e39d4464664e829.jpg",
+                shortDesc: "Koleksi kaos dan hoodie untuk brand fashion streetwear",
+                fullDesc: "Lengkap dengan mockup 3D, pattern, dan packaging. Brand ini fokus pada street culture Indonesia dengan sentuhan kontemporer. Total 8 desain yang siap produksi massal.",
+                published: true,
+                whatsappLink: "https://wa.me/6285808514571?text=Halo%20Rafi,%20mau%20diskusi%20desain%20baju%20brand%20saya"
+            },
+            {
+                id: 3,
+                title: "Poster Sekolah / School Campaign Poster",
+                img: "https://i.pinimg.com/736x/cf/52/09/cf52090955d7c44718c0d71872239c32.jpg",
+                shortDesc: "Kampanye lingkungan hidup untuk SMA Negeri",
+                fullDesc: "Seri poster edukasi 6 desain besar untuk dipasang di seluruh koridor sekolah. Menggunakan ilustrasi vektor yang mudah dipahami siswa.",
+                published: true,
+                whatsappLink: "https://wa.me/6285808514571?text=Halo%20Rafi,%20saya%20ingin%20pesan%20poster%20sekolah"
+            },
+            {
+                id: 4,
+                title: "Logo & Branding Startup",
+                img: "https://online.anyflip.com/ongeu/phvc/files/large/ce18c3333c59fb64600c1a9bcb3923b0.jpg?1686935215",
+                shortDesc: "Identitas visual lengkap untuk fintech startup",
+                fullDesc: "Logo utama, secondary logo, color palette, typography, business card, dan brand guideline 28 halaman. Proyek ini selesai dalam 18 hari.",
+                published: true,
+                whatsappLink: "https://wa.me/6285808514571?text=Halo%20Rafi,%20tertarik%20dengan%20branding%20startup%20Anda"
+            },
+            {
+                id: 5,
+                title: "Social Media Content Package",
+                img: "https://image.clicky.id/66c575012a2434e9d34672ef/product-highlight/6719c9acba66be27b2803e49.png",
+                shortDesc: "30 template Canva + 15 post statis untuk skincare brand",
+                fullDesc: "Paket lengkap Instagram & TikTok content selama 1 bulan. Termasuk 30 template editable + copywriting singkat.",
+                published: true,
+                whatsappLink: "https://wa.me/6285808514571?text=Halo%20Rafi,%20mau%20paket%20konten%20sosmed"
+            },
+            {
+                id: 6,
+                title: "Ilustrasi Buku / Book Cover",
+                img: "https://i.pinimg.com/736x/4e/d2/60/4ed2607acba91e6df533dcc8aacc0cb2.jpg",
+                shortDesc: "Sampul novel fantasi 'The Last Ember'",
+                fullDesc: "Ilustrasi sampul depan + belakang + spine. Gaya semi-realistic digital painting dengan elemen alam dan padang rumput.",
+                published: true,
+                whatsappLink: "https://wa.me/6285808514571?text=Halo%20Rafi,%20saya%20ingin%20sampul%20buku"
+            },
+            {
+                id: 7,
+                title: "Poster PPDB SMK Negeri Klakah 2026/2027",
+                img: "https://i.pinimg.com/736x/20/95/50/209550f7ae15d182045f4e4eca9dcb91.jpg",
+                shortDesc: "Desain poster promosi PPDB tahun ajaran 2026–2027",
+                fullDesc: "Poster promosi Penerimaan Peserta Didik Baru SMK Negeri Klakah tahun ajaran 2026–2027. Menggunakan kombinasi warna kuning dan hijau dengan layout informatif berisi jurusan, ekstrakurikuler, serta informasi pendaftaran.",
+                published: true,
+                whatsappLink: "https://wa.me/6285808514571?text=Halo,%20saya%20tertarik%20dengan%20desain%20poster%20PPDB%20Anda"
+            }
+           
+        ]
+        
+        // Render Projects
+        function renderProjects() {
+            const container = document.getElementById('projects-grid')
+            container.innerHTML = ''
+            
+            projects.forEach(proj => {
+                const cardHTML = `
+                    <div onclick="showProjectModal(${proj.id})" 
+                         class="project-card bg-[#111111] rounded-3xl overflow-hidden border border-white/10 cursor-pointer group">
+                        <div class="relative">
+                            <img src="${proj.img}" 
+                                 class="w-full aspect-video object-cover transition-transform group-hover:scale-105 duration-500">
+                            ${proj.published ? `
+                            <div class="absolute top-4 right-4 bg-[#A855F7] text-white text-[10px] font-bold tracking-widest px-4 py-1.5 rounded-2xl">
+                                PUBLISHED
+                            </div>` : ''}
+                        </div>
+                        <div class="p-7">
+                            <h3 class="font-semibold text-xl leading-tight">${proj.title}</h3>
+                            <p class="text-gray-400 text-sm mt-3 line-clamp-2">${proj.shortDesc}</p>
+                            
+                            <div class="mt-6 flex items-center justify-between text-xs">
+                                <span class="text-[#A855F7] font-medium">LIHAT DETAIL →</span>
+                                ${proj.published ? `<span class="text-emerald-400 text-[10px]">✓ Live Project</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `
+                container.innerHTML += cardHTML
+            })
+        }
+        
+        // Modal Functions
+        let currentProject = null
+        
+        function showProjectModal(id) {
+            currentProject = projects.find(p => p.id === id)
+            if (!currentProject) return
+            
+            document.getElementById('modal-image').src = currentProject.img
+            document.getElementById('modal-title').textContent = currentProject.title
+            document.getElementById('modal-short-desc').textContent = currentProject.shortDesc
+            document.getElementById('modal-full-desc').innerHTML = `
+                <p>${currentProject.fullDesc}</p>
+                    <div class="mt-6 text-xs uppercase tracking-widest text-gray-400">Tools yang digunakan</div>
+                    <div class="flex gap-3 mt-3">
+                    <div class="bg-white/10 text-white/70 text-xs px-4 py-2 rounded-2xl">Figma</div>
+                    <div class="bg-white/10 text-white/70 text-xs px-4 py-2 rounded-2xl">Photoshop</div>
+                    <div class="bg-white/10 text-white/70 text-xs px-4 py-2 rounded-2xl">Illustrator</div>
+                </div>
+            `
+            
+            const badge = document.getElementById('modal-badge')
+            if (currentProject.published) {
+                badge.classList.remove('hidden')
+            } else {
+                badge.classList.add('hidden')
+            }
+            
+            document.getElementById('modal-whatsapp-btn').href = currentProject.whatsappLink
+            document.getElementById('project-modal').classList.remove('hidden')
+            document.getElementById('project-modal').classList.add('flex')
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('project-modal')
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+        }
+        
+        // Form Handler
+        function initForm() {
+            const form = document.getElementById('contact-form')
+            form.addEventListener('submit', function(e) {
+                e.preventDefault()
+                
+                const name = document.getElementById('name').value
+                if (!name) return
+                
+                alert(`Terima kasih, ${name}! Pesan Anda telah terkirim. Leciy akan membalas secepatnya.`)
+                form.reset()
+            })
+        }
+        
+        // Keyboard escape for modal
+        function initKeyboard() {
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape") {
+                    const modal = document.getElementById('project-modal')
+                    if (!modal.classList.contains('hidden')) closeModal()
+                }
+            })
+        }
+        
+        // Set year
+        function setYear() {
+            document.getElementById('current-year').textContent = new Date().getFullYear()
+        }
+        
+        // Initialize everything
+        function initialize() {
+            // Tailwind already ready
+            renderProjects()
+            makeDraggable()
+            initForm()
+            initKeyboard()
+            setYear()
+            
+            // Smooth scroll for all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') return
+                    e.preventDefault()
+                    const target = document.querySelector(this.getAttribute('href'))
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' })
+                    }
+                })
+            })
+            
+            // Click outside modal to close
+            const modal = document.getElementById('project-modal')
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModal()
+            })
+        }
+        
+        // Run when page loaded
+        window.onload = initialize
+    </script>
+</body>
+</html>
